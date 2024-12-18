@@ -103,7 +103,7 @@ print(f'The list after sorted by age from the oldest to youngest is:')
 applicant_students(sorted_list)
 print()
 
-"""Ex 7:
+#Ex 7:
 
 our_pets = [
     {
@@ -124,84 +124,209 @@ our_pets = [
 }
 ]
 
-1 - Write a function that receives the list shown above and prints only animalType: cat.
-2 - Write a function that receives the list shown above and the animal type. The function should print all names of that animal type if 
-this type exists in the object.
-# 3 - Write a function that that receives the list shown above and animal name
-# The function should add the specified animal name to each ‘names’ list in each animal_type if that name does not exist in the 
-‘names’ array."""
+#7.1 - Write a function that receives the list shown above and prints only animalType: cat.
 
+def cat_details(our_pets):
+    for cat_pet in our_pets:
+        if cat_pet["animal_type"] == "cat":
+            print(f' 7.1. The animal type is: {cat_pet}')
+
+cat_details(our_pets)
+
+#7.2 - Write a function that receives the list shown above and the animal type. The function should print all names of that animal type if
+# this type exists in the object.
+
+
+def double_check(our_pets, animal_type):
+    check_up = False
+    for check_pet in our_pets:
+        if check_pet["animal_type"] == animal_type:
+            check_up = True
+            print(f' 7.2. The names of the animals are: {check_pet["names"]}')
+
+    if not check_up:
+        print(f'7.2. No pets of type {animal_type} found.')
+
+double_check(our_pets, "dog")
+
+# 3 - Write a function that that receives the list shown above and animal name. The function should add the specified animal name to each
+# ‘names’ list in each animal_type if that name does not exist in the ‘names’ list.
 
 # Ex 8:
-# student = {
-#  'name': 'John',
-#  'age': 20,
-#  'hobbies': ['reading', 'games', 'coding'],
-# }
-# 1 - Write a function that prints all the student data (each student property
-# should be printed in a new line).
-# 2 - Write a function that receives the student object and a hobby, the function
-# should add the hobby to the student's hobbies array if it’s not exist already.
-# 3 - Use the function that you wrote in ex 1 to print the data of the student and
-# check that the new hobby has been added.
-# 4 - Write a function that receives an object of a student and hobby, the
-# function should delete the hobby from the student's hobbies.
-# 5 - Use the function that you wrote in ex 1 to print the data student and check
-# that the hobby has been deleted from the object student.
+student = {
+    'name': 'John',
+    'age': 20,
+    'hobbies': ['reading', 'games', 'coding'],
+}
+# 8.1 - Write a function that prints all the student data (each student property should be printed in a new line).
+
+def student_details(student):
+    for key, value in student.items():
+        print(f'8.1. {key}: {value}')
+
+student_details(student)
+
+# 2 - Write a function that receives the student object and a hobby, the function should add the hobby to the student's hobbies list
+# if it’s not exist already.
+
+def hobbies(student, hobby):
+    if hobby in student['hobbies']:
+        print(f' 8.2. The hobby {hobby} already exist on the list')
+
+    else:
+        student['hobbies'].append(hobby)
+        print(f'8.2.{hobby} was added to list of hobbies!')
+
+hobbies(student, 'fishing')
+
+# 8.3 - Use the function that you wrote in ex 1 to print the data of the student and check that the new hobby has been added.
+
+def student_details(student):
+    for key, value in student.items():
+        print(f'8.3. {key}: {value}')
+
+student_details(student)
+
+# 4 - Write a function that receives an object of a student and hobby, the function should delete the hobby from the student's hobbies.
+
+def delete_hobby(student, hobby):
+    if hobby in student['hobbies']:
+        student['hobbies'].remove(hobby)
+        print(f'8.4. The hobby {hobby} was deleted from the list!')
+    else:
+        print(f'8.4. Hobby {hobby} is not present on the list!')
+
+delete_hobby(student, 'games')
+
+# 5 - Use the function that you wrote in ex 1 to print the data student and check that the hobby has been deleted from the object student.
+
+def student_details(student):
+    for key, value in student.items():
+        print(f'8.5. {key}: {value}')
+
+student_details(student)
+
 # 6 - Add to the object student new property: family_name and add a value.
-# Ex 9:
-# Write a function that prints all the elements of a 2D array using nested for
-# loops.
-# matrix =
-# [
-#  [1, 2],
-#  [3, 4],
-#  [5, 6]
-# ]
+
+def add_lastname(student, last_name):
+    student['last_name'] = last_name
+    print(f'8.6. Last name {last_name} was added to the student list!')
+
+add_lastname(student, 'Levi')
+
+def student_details(student):
+    for key, value in student.items():
+        print(f'8.6. {key}: {value}')
+
+student_details(student)
+
+# Ex 9: Write a function that prints all the elements of a second list using nested for loops.
+
+matrix = [
+ [1, 2],
+ [3, 4],
+ [5, 6]
+]
 # print_matrix(matrix) → Should print: 1 2 3 4 5 6
-# Ex 10:
-# Write a function to count how many numbers of zeros appear in a 2D matrix
-# using nested for loops and increment operation.
-# matrix =
-# [
-#  [0,1,1],
-#  [0,1,0],
-#  [1,0,0]
-# ]
+
+print(f'9. The list of nested loops is: ', end=' ')
+def nested_loop_print(matrix):
+    for row in matrix:
+        for num in row:
+            print(f'{num}', end=' ')
+
+nested_loop_print(matrix)
+print()
+# Ex 10: Write a function to count how many zeros appear in a 2D matrix, using nested for loops and increment operation.
+matrix_2d = [
+ [0,1,1],
+ [0,1,0],
+ [1,0,0]
+];
 # print(zero_count(matrix)) → Should print: 5
-# Ex 11:
-# Write a function to return an array of all the elements that are repeated more
-# than once in a given array.
-# arr = [4,2,34,4,1,12,1,4]
-# print(find_dup(arr)) Should print: [4, 1]
-# Ex 12:
-# Write a function using a for loop that gets an array and returns a new array
-# with the elements from the given array appearing in reverse order. (Don’t use
-# array reverse() method)
+
+def zero_count(matrix):
+
+    count = 0
+
+    for row in matrix:
+        for value in row:
+            if value == 0:
+                count += 1
+    return count
+
+print(f'10. Zero appears {zero_count(matrix_2d)} times in {matrix_2d}')
+
+# Ex 11: Write a function to return a list of all the elements that are repeated more than once in a given list.
+# list = [4,2,34,4,1,12,1,4]
+# print(find_dup(list)) Should print: [4, 1]
+
+def find_dup(num_list):
+    checked = set()
+    duplicates = []
+
+    for num in num_list:
+        if num in checked:
+            if num not in duplicates:
+                duplicates.append(num)
+        else:
+            checked.add(num)
+    return duplicates
+
+list = [4, 2, 34, 4, 1, 12, 1, 4]
+print(f'11. The duplicated numbers on {list} are: {find_dup(list)}')
+
+# Ex 12: Write a function using a for loop that gets a list and returns a new list with the elements from the given list
+# appearing in reverse order. (Don’t use list reverse() method)
 # For example:
-# arr = [43, "what", 9, true, "cannot", false, "be", 3, true];
+# list = [43, "what", 9, true, "cannot", false, "be", 3, true];
 # Function output should be:
-# [ture, 3, “be”, false, “cannot”, true, 9, “what”, 43]
-# Ex 13:
-# Given two arrays of integers. Add up each element in the same position and
-# create a new array containing the sum of each pair.
-# Assume both arrays are of the same length.
-# For example:
+# [true, 3, “be”, false, “cannot”, true, 9, “what”, 43]
+
+def reverse_order(my_list):
+    reversed_list = []
+    for object in my_list:
+        reversed_list.insert(0, object)
+    return reversed_list
+
+first_list = [43, "what", 9, True, "cannot", False, "be", 3, True];
+print(f'12. Reversed list: {reverse_order(first_list)}')
+
+# Ex 13: Given two list as integers. Add up each element in the same position and create a new list containing the sum
+# of each pair. Assume both list are of the same length. For example:
 # first_array = [4, 6, 7];
 # second_array = [8, 1, 9];
-# Function output should be:
-# [12, 7, 16]
-# Ex 14:
-# Write a program that will check if two strings are palindromes.
-# A palindrome is a word that spells the same forward and backward.
-# Palindrome: a word, phrase, or sequence that reads the same backward as
-# forward, examples for valid palindromes: madam, nurses run.
-# For example:
+# Function output should be: [12, 7, 16]
+
+def concatenated_list(list_one, list_two):
+    if len(list_one) != len(list_two): #checks if both lists are the same size.
+        return 'Both lists must be of an equal length!'
+
+    conct_list = []
+    for num in range(len(list_one)):
+        conct_list.append(list_one[num] + list_two[num])
+
+    return conct_list
+
+list_one = [4, 6, 7];
+list_two = [8, 1, 9];
+print(f'13. Concatenated list: {concatenated_list(list_one, list_two)}')
+
+# Ex 14: Write a program that will check if two strings are palindromes. A palindrome is a word that spells the same
+# forward and backward. Palindrome: a word, phrase, or sequence that reads the same backward as forward, examples
+# for valid palindromes: madam, nurses run. For example:
 # first_str = "racecar"
 # second_str = "Java"
 # Function output should be:
 # True (for first_str)
 # False (for second_str)
+
+def palindrome_check(string):
+
+
+
+
+
 # Ex 15:
 # Write a while loop that iterates as long as the counter is less than 100, on
 # every iteration the counter is multiplied by 2 starting from 1.
