@@ -321,66 +321,155 @@ print(f'13. Concatenated list: {concatenated_list(list_one, list_two)}')
 # True (for first_str)
 # False (for second_str)
 
-def palindrome_check(string):
+import string
 
+def palindrome_check(string_example):
+    string_example = string_example.lower() #To make everything lowercase and avoid comparison issues.
+    string_example = ' '.join(pali for pali in string_example if pali.isalnum()) #Removes non alphanumeric characters.
+    return string_example == string_example[::-1] #checks if the string is the same backwards and forward
 
+first_str = "racecar"
+second_str = "Java"
+print(f'14.1. Is {first_str} a Palindrome? {(palindrome_check(first_str))}')
+print(f'14.2. Is {second_str} a Palindrome? {(palindrome_check(second_str))}')
 
+# Ex 15: Write a while loop that iterates as long as the counter is less than 100, on every iteration the counter is multiplied
+# by 2 starting from 1.
 
+def less_than_100(number):
+    count = number #This way will start with the provided number
+    while count < 100:
+        count *= 2 #will multiply by 2 on every iteration
+    return count #Returns the last value while counter was < 100.
+print(f'15. The counter has reached {less_than_100(1)}')
 
-# Ex 15:
-# Write a while loop that iterates as long as the counter is less than 100, on
-# every iteration the counter is multiplied by 2 starting from 1.
-# Ex 16:
-# Write a while loop that iterates as long as the counter is greater than 50 , on
-# every iteration the counter is divided by 2.
-# The counter should start with the value 900000 before the first iteration.
+# Ex 16: Write a while loop that iterates as long as the counter is greater than 50 , on every iteration the counter is divided
+# by 2. The counter should start with the value 900000 before the first iteration.
 
+def greater_than_50(value):
+    count = value #This way will start with the provided number
+    while count > 50:
+        count /= 2 #will divided by 2 on every iteration
+    return count #Returns the last value while counter was < 100.
+print(f'16. The counter has reached {greater_than_50(900000)}')
 
-
-# Ex 17:
-# Write a function that gets an array(list) of strings as parameter and returns a new array containing all the values
+# Ex 17: Write a function that gets a list of strings as parameter and returns a new array containing all the values
 # that appear more than once. In your solution. Use only while loops.
 
+def check_duplicates_list(list_strings):
+    duplicates = []
+    value = 0
+    while value < len(list_strings):
+        if list_strings.count(list_strings[value]) > 1 and list_strings[value] not in duplicates:
+            duplicates.append(list_strings[value])
+        value += 1
+    return duplicates
 
+test_list = ["Toyota", "Ford", "BMW", "Honda", "Chevrolet", "Toyota", "Audi", "BMW", "Mercedes", "Ford", "Chevrolet", \
+             "Hyundai", "Nissan", "Tesla", "BMW", "Toyota", "Nissan", "Subaru", "Honda", "Ford"]
+print(f'17. The duplicated values are: {check_duplicates_list(test_list)}')
 
-
-
-
-# Ex 18:
-# Write a function that gets an array of strings as parameter and returns a new
-# array containing all the values from the provided array in the same order but
-# without any duplicated values. In your solution use only while loops.
+# Ex 18: Write a function that gets an array of strings as parameter and returns a new list containing all the values from the
+# provided array in the same order but without any duplicated values. In your solution use only while loops.
 # For example:
 # names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', ‘Chris’, ‘Kevin’]
-# Function output should be:
-# ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor']
-# Ex 19:
-# Write a function that gets an array of strings as parameter and returns a new
-# array containing all the values from the provided array in the same order but
-# without any duplicated values.
-# If the string ‘pete’ is a value inside the array your function should skip it and
-# not copy it to the new array. In your solution use only while loops.
+# Function output should be: ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor']
+
+def no_duplicates(list_no_duplicates):
+    duplicates2 = set()
+    new_list = []
+    index = 0
+    while index < len(list_no_duplicates):
+        item = list_no_duplicates[index]
+        if item not in duplicates2:
+            new_list.append(item)
+            duplicates2.add(item)
+        index +=1
+    return new_list
+
+names = ["Chris", "Kevin", "Naveed", "Pete", "Victor", "Chris", "Kevin"]
+print(f'18. The list of names without duplicates is: {no_duplicates(names)}')
+
+# Ex 19: Write a function that gets an list of strings as parameter and returns a new list containing all the values from the
+# provided list in the same order but without any duplicated values. If the string ‘pete’ is a value inside the list your
+# function should skip it and not copy it to the new list. In your solution use only while loops.
+# For example: names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', ‘Chris’, ‘Kevin’]
+# Function output should be: ['Chris', 'Kevin', 'Naveed', 'Victor']
+
+def no_pete(list_no_duplicates):
+    duplicates2 = set()
+    new_list = []
+    index = 0
+    while index < len(list_no_duplicates):
+        item = list_no_duplicates[index]
+        if item == "Pete":
+            index += 1
+            continue
+        if item not in duplicates2:
+            new_list.append(item)
+            duplicates2.add(item)
+        index +=1
+    return new_list
+
+print(f'19. The list of names without duplicates and the name Pete is: {no_pete(names)}')
+
+# Ex 20: Use a while loop to iterate on a boolean list. As long as the next index is different from the previous index the
+# iteration continues, otherwise, return the index of the element with the same value. If there are not two successive values,
+# the function will return -1.
 # For example:
-# names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor', ‘Chris’, ‘Kevin’]
-# Function output should be:
-# ['Chris', 'Kevin', 'Naveed', 'Victor']
-# Ex 20:
-# Use a while loop to iterate on a boolean array.
-# As long as the next index is different from the previous index the iteration
-# continues, otherwise, return the index of the element with the same value.
-# If there are not two successive values, the function will return -1.
-# For example:
-# array= [true, false, false, true, true, false] → return 2
-# array= [true, false, true, false, true, true]; → returns 5
-# array= [true, false, true, false, true, false]; → returns -1
-# Ex 21:
-# Write a python program that gets user input (use input() function for this).
-# The first input will be the user full name
-# Second input will be the user age
-# Third input will be the user email
-# Write validation for each input provided by the user and allow the user to try
-# again in case the user provided invalid input.
-# Validation for full name input → string type with 2 words for first name and last
-# name.
+# list1= [true, false, false, true, true, false] → return 2
+# list2= [true, false, true, false, true, true]; → returns 5
+# list3= [true, false, true, false, true, false]; → returns -1
+
+def check_booleans(list_booleans):
+
+    val = 1
+    while val < len(list_booleans):
+        if list_booleans[val] == list_booleans [val -1]: #It checks if the indexes are the same, starting with index 1
+            return val
+        val += 1
+    return  -1
+
+list1= [True, False, False, True, True, False]
+print(f'20.1. First boolean check: {check_booleans(list1)}')
+
+list2= [True, False, True, False, True, True]
+print(f'20.2. First boolean check: {check_booleans(list2)}')
+
+list3= [True, False, True, False, True, False]
+print(f'20.3. First boolean check: {check_booleans(list3)}') #If none matches are found, will return -1.
+
+# Ex 21: Write a python program that gets user input (use input() function for this). The first input will be the user full name.
+# Second input will be the user age. Third input will be the user email
+# Write validation for each input provided by the user and allow the user to try again in case the user provided invalid input.
+# Validation for full name input → string type with 2 words for first name and last name.
 # Validation for age input → int type between 1 - 130.
 # Validation for email input → string type with ‘@’ inside.
+
+
+def get_user_details():
+    while True:
+        full_name = input("21. Enter your full name (First and Last name): ")
+        name_parts = full_name.split()
+        if len(name_parts) == 2 and all(part.isalpha() for part in name_parts):
+            break
+        else:
+            print("Invalid input. Please enter your first and last name (only alphabetic characters).")
+    while True:
+        try:
+            age = int(input("21. Enter your age (between 1 and 130): "))
+            if 1 <= age <= 130:
+                break
+            else:
+                print("Age must be between 1 and 130. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number for age.")
+    while True:
+        email = input("21. Enter your email address: ")
+        if '@' in email:
+            break
+        else:
+            print("Invalid email format. Please include '@' in the email.")
+    print(f' 21. User Details: - Full Name: {full_name}, - Age: {age}, - Email: {email}')
+
+get_user_details()
